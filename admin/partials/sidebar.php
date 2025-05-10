@@ -34,7 +34,7 @@
                                     - Create Slider
                                 </a>
                             </li>
-                            
+
                         </ul>
                     </li>
                     <li class="nav-parent nav-expanded nav-active">
@@ -53,7 +53,64 @@
                                     - Create Featured
                                 </a>
                             </li>
-                            
+
+                        </ul>
+                    </li>
+                    <li class="nav-parent nav-expanded nav-active">
+                        <a class="nav-link" href="#">
+                            <i class="bx bx-cart-alt" aria-hidden="true"></i>
+                            <span>Brand</span>
+                        </a>
+                        <ul class="nav nav-children">
+                            <li>
+                                <a class="nav-link" href="brandIndex.php">
+                                    - Brand List
+                                </a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="brandCreate.php">
+                                    - Create Brand
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li class="nav-parent nav-expanded nav-active">
+                        <a class="nav-link" href="#">
+                            <i class="bx bx-cart-alt" aria-hidden="true"></i>
+                            <span>Category</span>
+                        </a>
+                        <ul class="nav nav-children">
+                            <li>
+                                <a class="nav-link" href="categoryIndex.php">
+                                    - Category List
+                                </a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="createCategory.php">
+                                    - Create Category
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li class="nav-parent nav-expanded nav-active">
+                        <a class="nav-link" href="#">
+                            <i class="bx bx-cart-alt" aria-hidden="true"></i>
+                            <span>Attribute</span>
+                        </a>
+                        <ul class="nav nav-children">
+                            <li>
+                                <a class="nav-link" href="attributeList.php">
+                                    - Attribute List
+                                </a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="attributeCreate.php">
+                                    - Create Attribute
+                                </a>
+                            </li>
+
                         </ul>
                     </li>
                     <!-- <li>

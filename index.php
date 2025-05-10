@@ -49,22 +49,22 @@ $featured = $fdata->fetchAll(PDO::FETCH_ASSOC);
     <div class="container-fluid">
         <div class="row justify-content-center">
             <?php
-                foreach($featured as $a){
+            foreach ($featured as $a) {
             ?>
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="single-categories-box">
-                    <img src="<?= $a['image'] ?>" alt="image">
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="single-categories-box">
+                        <img src="<?= $a['image'] ?>" alt="image">
 
-                    <div class="content text-primary">
-                        <span><?=$a['title']?></span>
-                        <h3><?=$a['content']?></h3>
-                        <a href="<?=$a['button_url']?>" class="default-btn"><?=$a['button_title']?></a>
+                        <div class="content text-primary">
+                            <span><?= $a['title'] ?></span>
+                            <h3><?= $a['content'] ?></h3>
+                            <a href="<?= $a['button_url'] ?>" class="default-btn"><?= $a['button_title'] ?></a>
+                        </div>
+                        <a href="<?= $a['button_url'] ?>" class="link-btn"></a>
                     </div>
-                    <a href="<?=$a['button_url']?>" class="link-btn"></a>
                 </div>
-            </div>
             <?php
-                }
+            }
             ?>
             <!-- <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="single-categories-box">
