@@ -40,6 +40,7 @@ if ($_SESSION['data']['email'] != null && $_SESSION['data']['login'] == true) {
     $stmt3 = $db->dbHandler->prepare($sql3);
     $stmt3->execute();
     $attr_values = $stmt3->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
     <!-- Meta File End -->
     <section class="body">
@@ -78,10 +79,21 @@ if ($_SESSION['data']['email'] != null && $_SESSION['data']['login'] == true) {
                                         foreach ($attr_values as $items) {
                                         ?>
                                             <tr>
-                                                <td><?=$items['id'];?></td>
-                                                <td><?=$items['value'];?></td>
-                                                <td></td>
-                                                <td><a href="#">Edit</a><a href="#">Delete</a></td>
+                                                <td><?= $items['id']; ?></td>
+                                                <td><?= $items['value']; ?></td>
+                                                <td>
+                                                    <?php
+                                                    if ($items['isActive'] == 1) {
+                                                        echo "Active";
+                                                    } else {
+                                                        echo "Inactive";
+                                                    }
+                                                    ?>
+
+                                                </td>
+                                                <td><a href="editattrvlue.php?edit_attribute_id=<?= $items['id']; ?>">Edit</a>
+                                                    <a href="#">Delete</a>
+                                                </td>
                                             </tr>
                                         <?php
                                         }
@@ -105,7 +117,7 @@ if ($_SESSION['data']['email'] != null && $_SESSION['data']['login'] == true) {
                                     <input type="hidden" name="attr_id" value="<?php echo $_REQUEST['attribute_id']; ?>">
                                     <div class="form-group mb-3">
                                         <label for="value" class="form-label">Attribute Value</label>
-                                        <input type="text" name="value" id="value" class="form-control" placeholder="Enter attribute value" required>
+                                        <input type="text" name="value" id="value" class="form-control" placeholder="Enter attribute value" required value="">
                                     </div>
 
 
