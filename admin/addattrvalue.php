@@ -36,8 +36,9 @@ if ($_SESSION['data']['email'] != null && $_SESSION['data']['login'] == true) {
         // var_dump($data);
     }
 
-    $sql3 = "SELECT * FROM attr_value ";
+    $sql3 = "SELECT * FROM attr_value where attr_id = ?";
     $stmt3 = $db->dbHandler->prepare($sql3);
+    $stmt3->bindParam(1, $_REQUEST['attribute_id']);
     $stmt3->execute();
     $attr_values = $stmt3->fetchAll(PDO::FETCH_ASSOC);
 

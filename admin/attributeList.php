@@ -20,6 +20,11 @@ if ($_SESSION['data']['email'] != null && $_SESSION['data']['login'] == true) {
     $stmt->execute();
     $attributes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
+<style>
+    .curser-hover{
+        cursor: pointer !important;
+    }
+</style>
     <section class="body">
         <?php include_once('./partials/header.php'); ?>
         <div class="inner-wrapper">
@@ -59,11 +64,13 @@ if ($_SESSION['data']['email'] != null && $_SESSION['data']['login'] == true) {
                                                         $attribute = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                         foreach ($attribute as $item) {
                                                     ?>
-                                                            <label class="badge bg-primary">
+                                                    <a href="editattrvlue.php?edit_attribute_id=<?= $item['id']; ?>">
+                                                            <label class="badge bg-primary curser-hover">
                                                                 <?php
                                                                 echo $item['value'];
                                                                 ?>
                                                             </label>
+                                                            </a>
                                                     <?php
                                                         }
                                                     }
