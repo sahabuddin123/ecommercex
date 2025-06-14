@@ -13,6 +13,12 @@ $fsql = "SELECT * FROM `featured` WHERE `is_active` = 1 AND `is_featured` = 1";
 $fdata = $db->dbHandler->prepare($fsql);
 $fdata->execute();
 $featured = $fdata->fetchAll(PDO::FETCH_ASSOC);
+
+// Products Table Data
+$psql = "SELECT * FROM `product` WHERE `is_active` = 1 AND `is_featured` = 1";
+$products = $db->dbHandler->prepare($psql);
+$products->execute();
+$product = $products->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!-- Start Main Banner Area -->
@@ -118,12 +124,16 @@ $featured = $fdata->fetchAll(PDO::FETCH_ASSOC);
         </div>
 
         <div class="row justify-content-center">
+            <?php
+
+foreach($product as $value){
+            ?>
             <div class="col-lg-4 col-md-6 col-sm-6">
                 <div class="single-products-box">
                     <div class="products-image">
-                        <a href="products-type-1.html">
-                            <img src="assets/img/products/img1.jpg" class="main-image" alt="image">
-                            <img src="assets/img/products/img-hover1.jpg" class="hover-image" alt="image">
+                        <a href="products-type.php?detail=<?=$value['id'];?>">
+                            <img src="admin/uploads/products/<?=$value['feat_img'];?>" class="main-image" alt="image">
+                            <img src="admin/uploads/products/<?=$value['feat_img'];?>" class="hover-image" alt="image">
                         </a>
 
                         <div class="products-button">
@@ -157,10 +167,10 @@ $featured = $fdata->fetchAll(PDO::FETCH_ASSOC);
                     </div>
 
                     <div class="products-content">
-                        <h3><a href="products-type-1.html">Long Sleeve Leopard T-Shirt</a></h3>
+                        <h3><a href="products-type.php?detail=<?=$value['id'];?>"><?=$value['name'];?></a></h3>
                         <div class="price">
-                            <span class="old-price">$321</span>
-                            <span class="new-price">$250</span>
+                            <span class="old-price">$<?=$value['price'];?></span>
+                            <span class="new-price">$<?php echo $value['price'] - $value['discount'] ?></span>
                         </div>
                         <div class="star-rating">
                             <i class='bx bxs-star'></i>
@@ -173,288 +183,10 @@ $featured = $fdata->fetchAll(PDO::FETCH_ASSOC);
                     </div>
                 </div>
             </div>
+<?php
+}
+?>
 
-            <div class="col-lg-4 col-md-6 col-sm-6">
-                <div class="single-products-box">
-                    <div class="products-image">
-                        <a href="products-type-1.html">
-                            <img src="assets/img/products/img2.jpg" class="main-image" alt="image">
-                            <img src="assets/img/products/img-hover2.jpg" class="hover-image" alt="image">
-                        </a>
-
-                        <div class="products-button">
-                            <ul>
-                                <li>
-                                    <div class="wishlist-btn">
-                                        <a href="#" data-bs-toggle="modal" data-bs-target="#shoppingWishlistModal">
-                                            <i class='bx bx-heart'></i>
-                                            <span class="tooltip-label">Add to Wishlist</span>
-                                        </a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="compare-btn">
-                                        <a href="compare.html">
-                                            <i class='bx bx-refresh'></i>
-                                            <span class="tooltip-label">Compare</span>
-                                        </a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="quick-view-btn">
-                                        <a href="#" data-bs-toggle="modal" data-bs-target="#productsQuickView">
-                                            <i class='bx bx-search-alt'></i>
-                                            <span class="tooltip-label">Quick View</span>
-                                        </a>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="sale-tag">Sale!</div>
-                    </div>
-
-                    <div class="products-content">
-                        <h3><a href="products-type-1.html">Causal V-Neck Soft Raglan</a></h3>
-                        <div class="price">
-                            <span class="old-price">$210</span>
-                            <span class="new-price">$200</span>
-                        </div>
-                        <div class="star-rating">
-                            <i class='bx bxs-star'></i>
-                            <i class='bx bxs-star'></i>
-                            <i class='bx bxs-star'></i>
-                            <i class='bx bxs-star'></i>
-                            <i class='bx bxs-star'></i>
-                        </div>
-                        <a href="cart.html" class="add-to-cart">Add to Cart</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 col-sm-6">
-                <div class="single-products-box">
-                    <div class="products-image">
-                        <a href="products-type-1.html">
-                            <img src="assets/img/products/img3.jpg" class="main-image" alt="image">
-                            <img src="assets/img/products/img-hover3.jpg" class="hover-image" alt="image">
-                        </a>
-
-                        <div class="products-button">
-                            <ul>
-                                <li>
-                                    <div class="wishlist-btn">
-                                        <a href="#" data-bs-toggle="modal" data-bs-target="#shoppingWishlistModal">
-                                            <i class='bx bx-heart'></i>
-                                            <span class="tooltip-label">Add to Wishlist</span>
-                                        </a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="compare-btn">
-                                        <a href="compare.html">
-                                            <i class='bx bx-refresh'></i>
-                                            <span class="tooltip-label">Compare</span>
-                                        </a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="quick-view-btn">
-                                        <a href="#" data-bs-toggle="modal" data-bs-target="#productsQuickView">
-                                            <i class='bx bx-search-alt'></i>
-                                            <span class="tooltip-label">Quick View</span>
-                                        </a>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="products-content">
-                        <h3><a href="products-type-1.html">Hanes Men's Pullover</a></h3>
-                        <div class="price">
-                            <span class="old-price">$210</span>
-                            <span class="new-price">$200</span>
-                        </div>
-                        <div class="star-rating">
-                            <i class='bx bxs-star'></i>
-                            <i class='bx bxs-star'></i>
-                            <i class='bx bxs-star'></i>
-                            <i class='bx bxs-star'></i>
-                            <i class='bx bxs-star'></i>
-                        </div>
-                        <a href="cart.html" class="add-to-cart">Add to Cart</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 col-sm-6">
-                <div class="single-products-box">
-                    <div class="products-image">
-                        <a href="products-type-1.html">
-                            <img src="assets/img/products/img4.jpg" class="main-image" alt="image">
-                            <img src="assets/img/products/img-hover4.jpg" class="hover-image" alt="image">
-                        </a>
-
-                        <div class="products-button">
-                            <ul>
-                                <li>
-                                    <div class="wishlist-btn">
-                                        <a href="#" data-bs-toggle="modal" data-bs-target="#shoppingWishlistModal">
-                                            <i class='bx bx-heart'></i>
-                                            <span class="tooltip-label">Add to Wishlist</span>
-                                        </a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="compare-btn">
-                                        <a href="compare.html">
-                                            <i class='bx bx-refresh'></i>
-                                            <span class="tooltip-label">Compare</span>
-                                        </a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="quick-view-btn">
-                                        <a href="#" data-bs-toggle="modal" data-bs-target="#productsQuickView">
-                                            <i class='bx bx-search-alt'></i>
-                                            <span class="tooltip-label">Quick View</span>
-                                        </a>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="products-content">
-                        <h3><a href="products-type-1.html">Gildan Men's Crew T-Shirt</a></h3>
-                        <div class="price">
-                            <span class="new-price">$150</span>
-                        </div>
-                        <div class="star-rating">
-                            <i class='bx bxs-star'></i>
-                            <i class='bx bxs-star'></i>
-                            <i class='bx bxs-star'></i>
-                            <i class='bx bxs-star'></i>
-                            <i class='bx bxs-star'></i>
-                        </div>
-                        <a href="cart.html" class="add-to-cart">Add to Cart</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 col-sm-6">
-                <div class="single-products-box">
-                    <div class="products-image">
-                        <a href="products-type-1.html">
-                            <img src="assets/img/products/img5.jpg" class="main-image" alt="image">
-                            <img src="assets/img/products/img-hover5.jpg" class="hover-image" alt="image">
-                        </a>
-
-                        <div class="products-button">
-                            <ul>
-                                <li>
-                                    <div class="wishlist-btn">
-                                        <a href="#" data-bs-toggle="modal" data-bs-target="#shoppingWishlistModal">
-                                            <i class='bx bx-heart'></i>
-                                            <span class="tooltip-label">Add to Wishlist</span>
-                                        </a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="compare-btn">
-                                        <a href="compare.html">
-                                            <i class='bx bx-refresh'></i>
-                                            <span class="tooltip-label">Compare</span>
-                                        </a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="quick-view-btn">
-                                        <a href="#" data-bs-toggle="modal" data-bs-target="#productsQuickView">
-                                            <i class='bx bx-search-alt'></i>
-                                            <span class="tooltip-label">Quick View</span>
-                                        </a>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="products-content">
-                        <h3><a href="products-type-1.html">Yidarton Women's Comfy</a></h3>
-                        <div class="price">
-                            <span class="new-price">$240</span>
-                        </div>
-                        <div class="star-rating">
-                            <i class='bx bxs-star'></i>
-                            <i class='bx bxs-star'></i>
-                            <i class='bx bxs-star'></i>
-                            <i class='bx bxs-star'></i>
-                            <i class='bx bxs-star'></i>
-                        </div>
-                        <a href="cart.html" class="add-to-cart">Add to Cart</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 col-sm-6">
-                <div class="single-products-box">
-                    <div class="products-image">
-                        <a href="products-type-1.html">
-                            <img src="assets/img/products/img6.jpg" class="main-image" alt="image">
-                            <img src="assets/img/products/img-hover6.jpg" class="hover-image" alt="image">
-                        </a>
-
-                        <div class="products-button">
-                            <ul>
-                                <li>
-                                    <div class="wishlist-btn">
-                                        <a href="#" data-bs-toggle="modal" data-bs-target="#shoppingWishlistModal">
-                                            <i class='bx bx-heart'></i>
-                                            <span class="tooltip-label">Add to Wishlist</span>
-                                        </a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="compare-btn">
-                                        <a href="compare.html">
-                                            <i class='bx bx-refresh'></i>
-                                            <span class="tooltip-label">Compare</span>
-                                        </a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="quick-view-btn">
-                                        <a href="#" data-bs-toggle="modal" data-bs-target="#productsQuickView">
-                                            <i class='bx bx-search-alt'></i>
-                                            <span class="tooltip-label">Quick View</span>
-                                        </a>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="new-tag">New!</div>
-                    </div>
-
-                    <div class="products-content">
-                        <h3><a href="products-type-1.html">Womens Tops Color</a></h3>
-                        <div class="price">
-                            <span class="old-price">$150</span>
-                            <span class="new-price">$100</span>
-                        </div>
-                        <div class="star-rating">
-                            <i class='bx bxs-star'></i>
-                            <i class='bx bxs-star'></i>
-                            <i class='bx bxs-star'></i>
-                            <i class='bx bxs-star'></i>
-                            <i class='bx bxs-star'></i>
-                        </div>
-                        <a href="cart.html" class="add-to-cart">Add to Cart</a>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </section>

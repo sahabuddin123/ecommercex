@@ -1,12 +1,34 @@
 <?php
 require_once('./layout/meta.php');
 require_once('./layout/header.php');
+include_once('./config/db.php');
+$db = new Db();
+$id = $_GET['detail'] ?? null;
+
+    if (!$id) {
+        header('Location: index.php');
+        exit;
+    }
+
+    $stmt = $db->dbHandler->prepare("SELECT * FROM product WHERE id = ?");
+    $stmt->execute([$id]);
+    $product = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    // search brand
+    $stmtBand = $db->dbHandler->prepare("SELECT * FROM brand WHERE id = ?");
+    $stmtBand->execute([$product['brand_id']]);
+    $Brand = $stmtBand->fetch(PDO::FETCH_ASSOC);
+
+      // search Category
+    $stmtCat = $db->dbHandler->prepare("SELECT * FROM category WHERE id = ?");
+    $stmtCat->execute([$product['cat_id']]);
+    $Category = $stmtCat->fetch(PDO::FETCH_ASSOC);
 ?>
 <!-- Start Page Title -->
 <div class="page-title-area">
     <div class="container">
         <div class="page-title-content">
-            <h2>Long Sleeve Leopard T-Shirt</h2>
+            <h2><?=$product['name'];?></h2>
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li>Products Details</li>
@@ -23,7 +45,7 @@ require_once('./layout/header.php');
             <div class="col-lg-5 col-md-12">
                 <div class="products-details-image">
                     <div class="single-products-details-image">
-                        <img src="assets/img/products/img1.jpg" alt="image">
+                        <img src="admin/uploads/products/<?=$product['feat_img'];?>" alt="image">
                     </div>
 
                     <div class="single-products-details-image">
@@ -58,11 +80,11 @@ require_once('./layout/header.php');
 
             <div class="col-lg-7 col-md-12">
                 <div class="products-details-desc products-details-desc-sticky">
-                    <h3>Long Sleeve Leopard T-Shirt</h3>
+                    <h3><?=$product['name'];?></h3>
 
                     <div class="price">
-                        <span class="new-price">$250.00</span>
-                        <span class="old-price">$321.00</span>
+                        <span class="new-price">$<?php echo $product['price'] - $product['discount'] ?></span>
+                        <span class="old-price">$<?=$product['price'];?></span>
                     </div>
 
                     <div class="products-review">
@@ -77,9 +99,10 @@ require_once('./layout/header.php');
                     </div>
 
                     <ul class="products-info">
-                        <li><span>Vendor:</span> <a href="#">Lereve</a></li>
-                        <li><span>Availability:</span> <a href="#">In stock (7 items)</a></li>
-                        <li><span>Products Type:</span> <a href="#">T-Shirt</a></li>
+                        <li><span>Vendor:</span> <a href="#"><?=$Brand['name']?></a></li>
+                        <li><span>Availability:</span> <a href="#"> </a></li>
+                        <li><span>Products Type:</span> <a href="#"><?=$Category['name']?></a></li>
+                        <li><?=$product['short_desc'];?></li>
                     </ul>
 
                     <div class="products-color-switch">
@@ -154,13 +177,9 @@ require_once('./layout/header.php');
                                 </a>
 
                                 <div class="accordion-content show">
-                                    <p>Design inspiration lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra gravida, orci magna rhoncus neque, id pulvinar odio lorem non turpis. Nullam sit amet enim.</p>
-
-                                    <ul>
-                                        <li>Fabric 1: 100% Polyester</li>
-                                        <li>Fabric 2: 100% Polyester, Lining: 100% Polyester</li>
-                                        <li>Fabric 3: 75% Polyester, 20% Viscose, 5% Elastane</li>
-                                    </ul>
+                                    <?php
+                                    echo $product['long_desc'];
+                                    ?>
                                 </div>
                             </li>
 
@@ -171,42 +190,9 @@ require_once('./layout/header.php');
                                 </a>
 
                                 <div class="accordion-content">
-                                    <table class="table table-striped">
-                                        <tbody>
-                                            <tr>
-                                                <td>Color:</td>
-                                                <td>Blue, Purple, White</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Size:</td>
-                                                <td>20, 24</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Material:</td>
-                                                <td>100% Polyester</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Height:</td>
-                                                <td>180 cm - 5' 11”</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Bust:</td>
-                                                <td>83 cm - 32”</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Waist:</td>
-                                                <td>57 cm - 22”</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Hips:</td>
-                                                <td>88 cm - 35</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Shipping:</td>
-                                                <td>Free</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                    <?php
+                                    echo $product['add_info'];
+                                    ?>
                                 </div>
                             </li>
 
