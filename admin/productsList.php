@@ -56,7 +56,7 @@ if ($_SESSION['data']['email'] != null && $_SESSION['data']['login'] == true) {
                                                 <td><?= date('d-M-Y H:i A', strtotime($value['created_at'])) ?></td>
                                                 <td>
                                                     <a href="addImageGalary.php?product_id=<?= $value['id'] ?>" class="btn btn-sm btn-info">Add Image</a>
-                                                    <a href="addProductAttribute.php?product_id=<?= $value['id'] ?>" class="btn btn-sm btn-info">Add Attribute</a>
+                                                    <a href="productAttrValueList.php?product_id=<?= $value['id'] ?>" class="btn btn-sm btn-info">Add Attribute</a>
                                                     <a href="productEdit.php?product_id=<?= $value['id'] ?>" class="btn btn-sm btn-primary">Edit</a>
                                                     <a href="productsList.php?product_id=<?= $value['id'] ?>" onclick="return confirm('Are you sure?');" class="btn btn-sm btn-danger">Delete</a>
                                                 </td>

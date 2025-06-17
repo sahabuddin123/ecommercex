@@ -22,6 +22,12 @@ $Brand = $stmtBand->fetch(PDO::FETCH_ASSOC);
 $stmtCat = $db->dbHandler->prepare("SELECT * FROM category WHERE id = ?");
 $stmtCat->execute([$product['cat_id']]);
 $Category = $stmtCat->fetch(PDO::FETCH_ASSOC);
+
+// Products Galary
+$sql = "SELECT * FROM product_gallery WHERE product_id = ?";
+$stmt = $db->dbHandler->prepare($sql);
+$stmt->execute([$id]);
+$gallery = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!-- Start Page Title -->
 <div class="page-title-area">
@@ -46,34 +52,16 @@ $Category = $stmtCat->fetch(PDO::FETCH_ASSOC);
                     <div class="single-products-details-image">
                         <img src="admin/uploads/products/<?= $product['feat_img']; ?>" alt="image">
                     </div>
+                    <?php
+                    foreach ($gallery as $item) {
+                    ?>
+                        <div class="single-products-details-image">
+                            <img src="admin/<?= $item['img_url']; ?>" alt="image">
+                        </div>
+                    <?php
+                    }
+                    ?>
 
-                    <div class="single-products-details-image">
-                        <img src="assets/img/products/img2.jpg" alt="image">
-                    </div>
-
-                    <div class="single-products-details-image">
-                        <img src="assets/img/products/img5.jpg" alt="image">
-                    </div>
-
-                    <div class="single-products-details-image">
-                        <img src="assets/img/products/img6.jpg" alt="image">
-                    </div>
-
-                    <div class="single-products-details-image">
-                        <img src="assets/img/products/img9.jpg" alt="image">
-                    </div>
-
-                    <div class="single-products-details-image">
-                        <img src="assets/img/products/img10.jpg" alt="image">
-                    </div>
-
-                    <div class="single-products-details-image">
-                        <img src="assets/img/products/img12.jpg" alt="image">
-                    </div>
-
-                    <div class="single-products-details-image">
-                        <img src="assets/img/products/img13.jpg" alt="image">
-                    </div>
                 </div>
             </div>
 
