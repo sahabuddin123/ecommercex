@@ -116,7 +116,7 @@ if ($_SESSION['data']['email'] != null && $_SESSION['data']['login'] == true) {
                                     </div>
                                     <div class="form-group">
                                         <label for="long_desc">Long Description</label>
-                                        <textarea name="long_desc" class="form-control" id="long_desc"></textarea>
+                                        <textarea name="long_desc" class="form-control" id="long_desc" rows="30"></textarea>
                                     </div>
                                     <div class="form-group">
                                         <label for="add_info">Additional Info</label>
@@ -226,7 +226,7 @@ if ($_SESSION['data']['email'] != null && $_SESSION['data']['login'] == true) {
 
 
     </section>
-    
+
 
     <?php
     include_once('./partials/footer.php');

@@ -5,30 +5,29 @@ include_once('./config/db.php');
 $db = new Db();
 $id = $_GET['detail'] ?? null;
 
-    if (!$id) {
-        header('Location: index.php');
-        exit;
-    }
+if (!isset($_REQUEST['detail'])) {
+    header('Location: http://localhost/ecoomercex');
+}
 
-    $stmt = $db->dbHandler->prepare("SELECT * FROM product WHERE id = ?");
-    $stmt->execute([$id]);
-    $product = $stmt->fetch(PDO::FETCH_ASSOC);
+$stmt = $db->dbHandler->prepare("SELECT * FROM product WHERE id = ?");
+$stmt->execute([$id]);
+$product = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    // search brand
-    $stmtBand = $db->dbHandler->prepare("SELECT * FROM brand WHERE id = ?");
-    $stmtBand->execute([$product['brand_id']]);
-    $Brand = $stmtBand->fetch(PDO::FETCH_ASSOC);
+// search brand
+$stmtBand = $db->dbHandler->prepare("SELECT * FROM brand WHERE id = ?");
+$stmtBand->execute([$product['brand_id']]);
+$Brand = $stmtBand->fetch(PDO::FETCH_ASSOC);
 
-      // search Category
-    $stmtCat = $db->dbHandler->prepare("SELECT * FROM category WHERE id = ?");
-    $stmtCat->execute([$product['cat_id']]);
-    $Category = $stmtCat->fetch(PDO::FETCH_ASSOC);
+// search Category
+$stmtCat = $db->dbHandler->prepare("SELECT * FROM category WHERE id = ?");
+$stmtCat->execute([$product['cat_id']]);
+$Category = $stmtCat->fetch(PDO::FETCH_ASSOC);
 ?>
 <!-- Start Page Title -->
 <div class="page-title-area">
     <div class="container">
         <div class="page-title-content">
-            <h2><?=$product['name'];?></h2>
+            <h2><?= $product['name']; ?></h2>
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li>Products Details</li>
@@ -45,7 +44,7 @@ $id = $_GET['detail'] ?? null;
             <div class="col-lg-5 col-md-12">
                 <div class="products-details-image">
                     <div class="single-products-details-image">
-                        <img src="admin/uploads/products/<?=$product['feat_img'];?>" alt="image">
+                        <img src="admin/uploads/products/<?= $product['feat_img']; ?>" alt="image">
                     </div>
 
                     <div class="single-products-details-image">
@@ -80,11 +79,11 @@ $id = $_GET['detail'] ?? null;
 
             <div class="col-lg-7 col-md-12">
                 <div class="products-details-desc products-details-desc-sticky">
-                    <h3><?=$product['name'];?></h3>
+                    <h3><?= $product['name']; ?></h3>
 
                     <div class="price">
                         <span class="new-price">$<?php echo $product['price'] - $product['discount'] ?></span>
-                        <span class="old-price">$<?=$product['price'];?></span>
+                        <span class="old-price">$<?= $product['price']; ?></span>
                     </div>
 
                     <div class="products-review">
@@ -99,10 +98,10 @@ $id = $_GET['detail'] ?? null;
                     </div>
 
                     <ul class="products-info">
-                        <li><span>Vendor:</span> <a href="#"><?=$Brand['name']?></a></li>
+                        <li><span>Vendor:</span> <a href="#"><?= $Brand['name'] ?></a></li>
                         <li><span>Availability:</span> <a href="#"> </a></li>
-                        <li><span>Products Type:</span> <a href="#"><?=$Category['name']?></a></li>
-                        <li><?=$product['short_desc'];?></li>
+                        <li><span>Products Type:</span> <a href="#"><?= $Category['name'] ?></a></li>
+                        <li><?= $product['short_desc']; ?></li>
                     </ul>
 
                     <div class="products-color-switch">

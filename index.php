@@ -126,66 +126,66 @@ $product = $products->fetchAll(PDO::FETCH_ASSOC);
         <div class="row justify-content-center">
             <?php
 
-foreach($product as $value){
+            foreach ($product as $value) {
             ?>
-            <div class="col-lg-4 col-md-6 col-sm-6">
-                <div class="single-products-box">
-                    <div class="products-image">
-                        <a href="products-type.php?detail=<?=$value['id'];?>">
-                            <img src="admin/uploads/products/<?=$value['feat_img'];?>" class="main-image" alt="image">
-                            <img src="admin/uploads/products/<?=$value['feat_img'];?>" class="hover-image" alt="image">
-                        </a>
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="single-products-box">
+                        <div class="products-image">
+                            <a href="products-type.php?detail=<?= $value['id']; ?>">
+                                <img src="admin/uploads/products/<?= $value['feat_img']; ?>" class="main-image" alt="image">
+                                <img src="admin/uploads/products/<?= $value['feat_img']; ?>" class="hover-image" alt="image">
+                            </a>
 
-                        <div class="products-button">
-                            <ul>
-                                <li>
-                                    <div class="wishlist-btn">
-                                        <a href="#" data-bs-toggle="modal" data-bs-target="#shoppingWishlistModal">
-                                            <i class='bx bx-heart'></i>
-                                            <span class="tooltip-label">Add to Wishlist</span>
-                                        </a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="compare-btn">
-                                        <a href="compare.html">
-                                            <i class='bx bx-refresh'></i>
-                                            <span class="tooltip-label">Compare</span>
-                                        </a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="quick-view-btn">
-                                        <a href="#" data-bs-toggle="modal" data-bs-target="#productsQuickView">
-                                            <i class='bx bx-search-alt'></i>
-                                            <span class="tooltip-label">Quick View</span>
-                                        </a>
-                                    </div>
-                                </li>
-                            </ul>
+                            <div class="products-button">
+                                <ul>
+                                    <li>
+                                        <div class="wishlist-btn">
+                                            <a href="#" data-bs-toggle="modal" data-bs-target="#shoppingWishlistModal">
+                                                <i class='bx bx-heart'></i>
+                                                <span class="tooltip-label">Add to Wishlist</span>
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="compare-btn">
+                                            <a href="compare.html">
+                                                <i class='bx bx-refresh'></i>
+                                                <span class="tooltip-label">Compare</span>
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="quick-view-btn">
+                                            <a href="#" data-bs-toggle="modal" data-bs-target="#productsQuickView">
+                                                <i class='bx bx-search-alt'></i>
+                                                <span class="tooltip-label">Quick View</span>
+                                            </a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="products-content">
-                        <h3><a href="products-type.php?detail=<?=$value['id'];?>"><?=$value['name'];?></a></h3>
-                        <div class="price">
-                            <span class="old-price">$<?=$value['price'];?></span>
-                            <span class="new-price">$<?php echo $value['price'] - $value['discount'] ?></span>
+                        <div class="products-content">
+                            <h3><a href="products-type.php?detail=<?= $value['id']; ?>"><?= $value['name']; ?></a></h3>
+                            <div class="price">
+                                <span class="old-price">$<?= $value['price']; ?></span>
+                                <span class="new-price">$<?php echo $value['price'] - $value['discount'] ?></span>
+                            </div>
+                            <div class="star-rating">
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                            </div>
+                            <a href="cart.html" class="add-to-cart">Add to Cart</a>
                         </div>
-                        <div class="star-rating">
-                            <i class='bx bxs-star'></i>
-                            <i class='bx bxs-star'></i>
-                            <i class='bx bxs-star'></i>
-                            <i class='bx bxs-star'></i>
-                            <i class='bx bxs-star'></i>
-                        </div>
-                        <a href="cart.html" class="add-to-cart">Add to Cart</a>
                     </div>
                 </div>
-            </div>
-<?php
-}
-?>
+            <?php
+            }
+            ?>
 
         </div>
     </div>

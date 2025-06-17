@@ -18,7 +18,7 @@
                             <span>Dashboard</span>
                         </a>
                     </li>
-                    <li class="nav-parent nav-expanded nav-active">
+                    <li class="nav-parent ">
                         <a class="nav-link" href="#">
                             <i class="bx bx-cart-alt" aria-hidden="true"></i>
                             <span>Slider</span>
@@ -37,7 +37,7 @@
 
                         </ul>
                     </li>
-                    <li class="nav-parent nav-expanded nav-active">
+                    <li class="nav-parent  ">
                         <a class="nav-link" href="#">
                             <i class="bx bx-cart-alt" aria-hidden="true"></i>
                             <span>Featured</span>
@@ -56,7 +56,7 @@
 
                         </ul>
                     </li>
-                    <li class="nav-parent nav-expanded nav-active">
+                    <li class="nav-parent  ">
                         <a class="nav-link" href="#">
                             <i class="bx bx-cart-alt" aria-hidden="true"></i>
                             <span>Brand</span>
@@ -75,7 +75,7 @@
 
                         </ul>
                     </li>
-                    <li class="nav-parent nav-expanded nav-active">
+                    <li class="nav-parent  ">
                         <a class="nav-link" href="#">
                             <i class="bx bx-cart-alt" aria-hidden="true"></i>
                             <span>Category</span>
@@ -94,7 +94,7 @@
 
                         </ul>
                     </li>
-                    <li class="nav-parent nav-expanded nav-active">
+                    <li class="nav-parent ">
                         <a class="nav-link" href="#">
                             <i class="bx bx-cart-alt" aria-hidden="true"></i>
                             <span>Attribute</span>
@@ -108,6 +108,25 @@
                             <li>
                                 <a class="nav-link" href="attributeCreate.php">
                                     - Create Attribute
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li class="nav-parent ">
+                        <a class="nav-link" href="#">
+                            <i class="bx bx-cart-alt" aria-hidden="true"></i>
+                            <span>Products</span>
+                        </a>
+                        <ul class="nav nav-children">
+                            <li>
+                                <a class="nav-link" href="productsList.php">
+                                    - Products List
+                                </a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="addproducts.php">
+                                    - Create Product
                                 </a>
                             </li>
 
