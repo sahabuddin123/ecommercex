@@ -28,6 +28,14 @@ $sql = "SELECT * FROM product_gallery WHERE product_id = ?";
 $stmt = $db->dbHandler->prepare($sql);
 $stmt->execute([$id]);
 $gallery = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+// get attr
+
+$sql = "SELECT `attr_id` FROM `product_attr_value` WHERE `product_id` = ? GROUP BY `attr_id`";
+$stmt = $db->dbHandler->prepare($sql);
+$stmt->execute([$id]);
+$attr = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
 <!-- Start Page Title -->
 <div class="page-title-area">
@@ -91,31 +99,40 @@ $gallery = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <li><span>Products Type:</span> <a href="#"><?= $Category['name'] ?></a></li>
                         <li><?= $product['short_desc']; ?></li>
                     </ul>
+                    <?php
+                    foreach ($attr as $value) {
+                        $sql = "SELECT `name` FROM `attribute` WHERE `id` = ?";
+                        $stmt = $db->dbHandler->prepare($sql);
+                        $stmt->execute([$value['attr_id']]);
+                        $attr_name = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                    ?>
+                        <div class="products-size-wrapper">
 
-                    <div class="products-color-switch">
-                        <span>Color:</span>
+                            <span><?= $attr_name[0]['name']; ?>:</span>
+                            <?php
+                            $sql = "SELECT `attr_value_id` FROM `product_attr_value` WHERE `attr_id` = ? ";
+                            $stmt = $db->dbHandler->prepare($sql);
+                            $stmt->execute([$value['attr_id']]);
+                            $attr_val_id = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                            // print_r($attr_val_id); 
+                            ?>
+                            <ul><?php
+                                foreach ($attr_val_id as $items) {
+                                    $sql = "SELECT `value` FROM `attr_value` WHERE `id` = ?";
+                                    $stmt = $db->dbHandler->prepare($sql);
+                                    $stmt->execute([$items['attr_value_id']]);
+                                    $attr_value = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                                ?>
+                                    <li><a href="#"><?=$attr_value[0]['value'];?></a></li>
+                                <?php
 
-                        <ul>
-                            <li><a href="#" title="Black" class="color-black"></a></li>
-                            <li><a href="#" title="White" class="color-white"></a></li>
-                            <li class="active"><a href="#" title="Green" class="color-green"></a></li>
-                            <li><a href="#" title="Yellow Green" class="color-yellowgreen"></a></li>
-                            <li><a href="#" title="Teal" class="color-teal"></a></li>
-                        </ul>
-                    </div>
-
-                    <div class="products-size-wrapper">
-                        <span>Size:</span>
-
-                        <ul>
-                            <li><a href="#">XS</a></li>
-                            <li class="active"><a href="#">S</a></li>
-                            <li><a href="#">M</a></li>
-                            <li><a href="#">XL</a></li>
-                            <li><a href="#">XXL</a></li>
-                        </ul>
-                    </div>
-
+                                }
+                                ?>
+                            </ul>
+                        </div>
+                    <?php
+                    }
+                    ?>
                     <div class="products-info-btn">
                         <a href="#" data-bs-toggle="modal" data-bs-target="#sizeGuideModal"><i class='bx bx-crop'></i> Size guide</a>
                         <a href="#" data-bs-toggle="modal" data-bs-target="#productsShippingModal"><i class='bx bxs-truck'></i> Shipping</a>

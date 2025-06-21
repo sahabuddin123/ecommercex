@@ -3425,7 +3425,8 @@ Products Details CSS
   margin-top: 8px;
 }
 .products-details-desc .products-size-wrapper ul li a {
-  width: 38px;
+  /* width: 100% !important; */
+  padding: 5px;
   height: 35px;
   display: block;
   line-height: 32px;
