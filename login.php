@@ -24,7 +24,7 @@ if (isset($_POST['submit'])) {
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($user) {
-            if (password_verify($password, $user['password'])) {
+            if (md5($password, $user['password'])) {
                 $_SESSION['user'] = [
                     'id'       => $user['id'],
                     'username' => $user['username'],
@@ -33,7 +33,7 @@ if (isset($_POST['submit'])) {
                     'login'    => true,
                     'msg'      => 'Login Success!',
                 ];
-                header('Location: http://localhost/ecoomercex/dashboard.php');
+                header('Location: dashboard.php');
                 exit();
             } else {
                 $msg = "Invalid password. Please try again.";
