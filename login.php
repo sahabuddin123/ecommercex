@@ -7,7 +7,7 @@ $msg = null;
 
 // Redirect if already logged in
 if (isset($_SESSION['user']['email']) && $_SESSION['user']['login'] === true) {
-    header('Location: http://localhost/ecoomercex/dashboard.php');
+    header('Location: dashboard.php');
     exit();
 }
 
